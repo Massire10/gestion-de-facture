@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "mass/api")
@@ -60,8 +61,8 @@ public class FactureController {
     }
 
     @GetMapping(value = "/facture/{id}")
-    public void findById(@PathVariable Long id){
-        factureService.findById(id);
+    public Optional<Facture> findById(@PathVariable Long id){
+      return  factureService.findById(id);
     }
 
 }
