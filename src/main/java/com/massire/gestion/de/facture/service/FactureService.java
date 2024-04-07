@@ -4,6 +4,7 @@ import com.massire.gestion.de.facture.entities.DetailsFacture;
 import com.massire.gestion.de.facture.entities.Facture;
 import com.massire.gestion.de.facture.repository.DetailsFactureRepository;
 import com.massire.gestion.de.facture.repository.FactureRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -43,6 +44,7 @@ public class FactureService {
         return facture1;
     }
 
+    /* Ici, on calcule le montant total de toutes les facture*/
     public double calculMontantTotal(){
 
         double montantTotal = 0.0;
@@ -57,4 +59,26 @@ public class FactureService {
         return montantTotal;
 
     }
+
+    /* Ici, on calcule le montant individuelle de chaque facture*/
+    public List<Double> calculMontantFacture(){
+
+        List<Double> montants = new ArrayList<>();
+
+        List<DetailsFacture> detailsFactures = detailsFactureRepository.findAll();
+
+        double montantFacture = 0.0;
+
+        for (DetailsFacture detailsFacture1 : detailsFactures){
+            montantFacture = detailsFacture1.getQuantite() * detailsFacture1.getMateriel().getPrix();
+        }
+        montants.add(montantFacture);
+
+        return montants;
+    }
+
+    public Optional<Facture> findById(Long id){
+        return this.factureRepository.findById(id);
+    }
+
 }

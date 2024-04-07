@@ -40,13 +40,28 @@ public class FactureController {
         return new ResponseEntity<>(facture1,HttpStatus.OK);
 
     }
-    @GetMapping(value = "/calcul")
+    @GetMapping(value = "/calculFactures")
     public double calculMontantTotal(){
         double result = 0.0;
 
         result = factureService.calculMontantTotal();
 
         return result;
+    }
+
+    @GetMapping(value = "/calculFacture")
+    public List<Double> calculMontantFacture(){
+
+        List<Double> montants = new ArrayList<>();
+
+        montants = factureService.calculMontantFacture();
+
+        return montants;
+    }
+
+    @GetMapping(value = "/facture/{id}")
+    public void findById(@PathVariable Long id){
+        factureService.findById(id);
     }
 
 }
