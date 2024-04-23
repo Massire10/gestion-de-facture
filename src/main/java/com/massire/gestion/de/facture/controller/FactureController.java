@@ -62,7 +62,7 @@ public class FactureController {
 
     @GetMapping(value = "/facture/{id}")
     public Optional<Facture> findById(@PathVariable Long id){
-      return  factureService.findById(id);
+      return factureService.findById(id);
     }
 
 }

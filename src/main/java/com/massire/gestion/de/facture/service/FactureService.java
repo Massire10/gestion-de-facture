@@ -44,7 +44,7 @@ public class FactureService {
         return facture1;
     }
 
-    /* Ici, on calcule le montant total de toutes les facture*/
+    /* Ici, on calcule le montant total de toutes les factures*/
     public double calculMontantTotal(){
 
         double montantTotal = 0.0;
